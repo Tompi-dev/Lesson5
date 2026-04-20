@@ -1,0 +1,1150 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI Trend — Урок 5: ИИ-Постеры</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@400;700;900&family=Onest:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --primary:#685BC7;--pl:#8578D8;--accent:#B5ED18;--dark:#0F0B2A;
+  --white:#FFF;--bg:#FAFAFA;--g50:#F5F5FA;--g100:#EDEDF5;--g200:#DDDCEE;--g400:#6E6893;
+  --red:#FF4757;--green:#2ED573;--orange:#FFA502;--cyan:#1DD1A1;--pink:#FF6B81;
+  --fh:'Unbounded',sans-serif;--fb:'Onest',sans-serif;--fc:'JetBrains Mono',monospace;
+}
+html{scroll-snap-type:y mandatory;overflow-y:scroll;height:100%;scroll-behavior:smooth}
+body{font-family:var(--fb);background:var(--bg);color:var(--dark);height:100%;-webkit-font-smoothing:antialiased}
+.slide{scroll-snap-align:start;min-height:100vh;width:100%;overflow:hidden;position:relative;display:flex}
+#tbar{position:fixed;top:0;left:0;width:100%;height:4px;background:var(--g100);z-index:200}
+#tfill{height:100%;background:linear-gradient(90deg,var(--primary),var(--accent));width:0%;transition:width .4s;border-radius:0 2px 2px 0}
+#xp{position:fixed;top:14px;right:22px;background:var(--dark);color:var(--accent);font-family:var(--fh);font-size:12px;font-weight:700;padding:7px 16px;border-radius:100px;z-index:200;display:flex;align-items:center;gap:6px}
+#xp.b{animation:bump .4s}
+@keyframes bump{0%,100%{transform:scale(1)}50%{transform:scale(1.15)}}
+#xptoast{position:fixed;bottom:60px;right:22px;background:var(--accent);color:var(--dark);font-family:var(--fh);font-size:11px;font-weight:700;padding:8px 16px;border-radius:100px;z-index:200;opacity:0;transform:translateY(10px);transition:.3s;pointer-events:none}
+#xptoast.show{opacity:1;transform:translateY(0)}
+#dots{position:fixed;right:18px;top:50%;transform:translateY(-50%);display:flex;flex-direction:column;gap:4px;z-index:100}
+.dt{width:5px;height:5px;border-radius:50%;background:var(--g200);cursor:pointer;transition:.3s}
+.dt.on{background:var(--primary);transform:scale(1.8)}
+#cnt{position:fixed;bottom:18px;right:26px;font-size:10px;font-weight:600;color:var(--g400);z-index:100}
+#kh{position:fixed;bottom:18px;left:50%;transform:translateX(-50%);background:var(--dark);color:#fff;font-size:10px;font-weight:500;padding:6px 14px;border-radius:100px;z-index:100;transition:opacity .6s}
+#kh.h{opacity:0}
+@keyframes fu{from{opacity:0;transform:translateY(34px)}to{opacity:1;transform:translateY(0)}}
+@keyframes fl{0%,100%{transform:translateY(0)}50%{transform:translateY(-10px)}}
+.slide.v .a1{animation:fu .7s 0s cubic-bezier(.22,1,.36,1) both}
+.slide.v .a2{animation:fu .7s .1s cubic-bezier(.22,1,.36,1) both}
+.slide.v .a3{animation:fu .7s .2s cubic-bezier(.22,1,.36,1) both}
+.slide.v .a4{animation:fu .7s .3s cubic-bezier(.22,1,.36,1) both}
+.slide.v .a5{animation:fu .7s .4s cubic-bezier(.22,1,.36,1) both}
+.slide.v .a6{animation:fu .7s .5s cubic-bezier(.22,1,.36,1) both}
+.ey{font-size:11px;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:var(--primary);display:flex;align-items:center;gap:10px}
+.ey::before{content:'';width:28px;height:2px;background:var(--accent);flex-shrink:0}
+.txl{font-family:var(--fh);font-weight:900;letter-spacing:-.03em;color:var(--dark);line-height:.93;font-size:clamp(38px,5vw,72px)}
+.tlg{font-family:var(--fh);font-weight:900;letter-spacing:-.03em;color:var(--dark);line-height:1.05;font-size:clamp(24px,3vw,42px)}
+.blg{font-size:clamp(14px,1.4vw,17px);line-height:1.7;color:#444}
+.bmd{font-size:clamp(12px,1.1vw,14px);line-height:1.65;color:var(--g400)}
+.tp{color:var(--primary)}.tg{color:var(--green)}.tr{color:var(--red)}.to{color:var(--orange)}
+.tag{display:inline-flex;align-items:center;gap:6px;background:var(--g50);border:1.5px solid var(--g200);border-radius:100px;padding:7px 16px;font-size:12px;font-weight:600}
+.tag.ac{background:var(--accent);border-color:var(--accent)}.tag.pr{background:var(--primary);border-color:var(--primary);color:#fff}
+.pill{display:inline-flex;align-items:center;gap:8px;padding:12px 26px;border-radius:100px;border:none;font-family:var(--fb);font-size:14px;font-weight:600;cursor:pointer;transition:transform .2s}
+.pill:hover{transform:translateY(-2px)}.pill:active{transform:scale(.97)}
+.pill.pr{background:var(--primary);color:#fff}.pill.ac{background:var(--accent);color:var(--dark)}.pill.sm{padding:9px 20px;font-size:13px}
+.sc{width:100%;display:flex;flex-direction:column;align-items:center;justify-content:center}
+.inn{max-width:1000px;width:100%;padding:48px 64px}
+.inns{max-width:820px;width:100%;padding:48px 64px}
+.dv{height:1px;background:var(--g200);margin:20px 0}
+.cpb{display:inline-flex;align-items:center;gap:6px;padding:8px 16px;border-radius:8px;border:1.5px solid var(--g200);background:var(--white);font-size:12px;font-weight:600;color:var(--primary);cursor:pointer;transition:all .25s;margin-top:8px}
+.cpb:hover{border-color:var(--primary);background:rgba(104,91,199,.05)}.cpb.ok{border-color:var(--green);color:var(--green)}
+.cpb.dk{background:rgba(255,255,255,.08);border-color:rgba(255,255,255,.2);color:var(--accent)}
+.logo{display:flex;align-items:center;gap:12px;font-family:var(--fh);font-weight:900;font-size:clamp(26px,3vw,44px);letter-spacing:-.03em}
+.logo-icon{position:relative;width:clamp(30px,3.5vw,50px);height:clamp(30px,3.5vw,50px);flex-shrink:0}
+.logo-a{position:absolute;inset:0;color:var(--primary);font-size:clamp(22px,2.8vw,38px);display:flex;align-items:center;justify-content:center;font-weight:900}
+.logo-dot{position:absolute;top:2px;right:2px;width:clamp(8px,1vw,14px);height:clamp(8px,1vw,14px);background:var(--accent);border-radius:50%}
+.logo-text{color:var(--primary)}
+.s1l{flex:1;display:flex;flex-direction:column;justify-content:center;padding:64px;gap:20px}
+.s1r{flex:1;background:var(--dark);display:flex;flex-direction:column;justify-content:center;align-items:center;padding:64px;position:relative;overflow:hidden}
+.s1r::before{content:'';position:absolute;inset:0;background:url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="60" height="60"><circle cx="2" cy="2" r="1.5" fill="%23B5ED18" opacity=".1"/></svg>')}
+.topic-list{list-style:none;display:flex;flex-direction:column;gap:12px}
+.topic-list li{color:rgba(255,255,255,.8);font-size:clamp(13px,1.2vw,15px);font-weight:500;padding-left:24px;position:relative}
+.topic-list li::before{content:'✓';position:absolute;left:0;color:var(--accent);font-weight:700}
+.hero-emoji{font-size:clamp(80px,11vw,140px);animation:fl 3s ease-in-out infinite;display:block;text-align:center;margin-bottom:24px}
+.step-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:16px}
+.step-card{background:var(--white);border:2px solid var(--g200);border-radius:16px;padding:22px;transition:all .3s}
+.step-card:hover{border-color:var(--primary);transform:translateY(-3px);box-shadow:0 6px 20px rgba(104,91,199,.1)}
+.step-num{font-family:var(--fh);font-size:26px;font-weight:900;color:var(--accent);margin-bottom:10px}
+.step-title{font-family:var(--fh);font-size:15px;font-weight:700;margin-bottom:8px}
+.prompt-box{background:var(--white);border:2px solid var(--g200);border-radius:14px;overflow:hidden;transition:border-color .3s;margin:10px 0}
+.prompt-box:hover{border-color:var(--primary)}
+.prompt-header{padding:11px 18px;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.1em;display:flex;align-items:center;justify-content:space-between;gap:8px;border-bottom:1px solid var(--g100)}
+.prompt-body{padding:16px 20px;font-family:var(--fc);font-size:12.5px;line-height:1.75;color:var(--dark);background:#FDFCFF;white-space:pre-wrap;max-height:200px;overflow-y:auto}
+.prompt-body::-webkit-scrollbar{width:4px}.prompt-body::-webkit-scrollbar-thumb{background:var(--g200);border-radius:2px}
+.prompt-footer{padding:8px 16px;background:var(--g50);display:flex;gap:8px;flex-wrap:wrap}
+.prompt-box.ru .prompt-header{background:rgba(181,237,24,.1);color:#5a7000}
+.prompt-box.en .prompt-header{background:rgba(46,213,115,.09);color:#1a6640}
+.prompt-box.analysis .prompt-header{background:rgba(104,91,199,.09);color:var(--primary)}
+.block-item{display:flex;gap:14px;padding:13px 16px;background:var(--white);border:2px solid var(--g200);border-radius:12px;transition:.25s}
+.block-item:hover{border-color:var(--primary)}
+.block-icon{font-size:22px;flex-shrink:0;width:36px;text-align:center}
+.block-label{font-family:var(--fh);font-size:12px;font-weight:700;margin-bottom:4px;color:var(--primary)}
+.practice-area{width:100%;min-height:100px;border:2px solid var(--g200);border-radius:12px;padding:14px 16px;font-family:var(--fb);font-size:14px;resize:vertical;transition:border-color .3s;line-height:1.65}
+.practice-area:focus{outline:none;border-color:var(--primary);box-shadow:0 0 0 3px rgba(104,91,199,.1)}
+.block-shelf{display:flex;flex-wrap:wrap;gap:8px}
+.cblk{background:var(--white);border:2px solid var(--g200);border-radius:10px;padding:8px 13px;font-size:13px;font-weight:600;cursor:pointer;transition:all .25s;user-select:none}
+.cblk:hover{border-color:var(--primary);transform:scale(1.03)}
+.cblk.selected{background:var(--primary);color:#fff;border-color:var(--primary)}
+.result-box{min-height:80px;border:2px dashed var(--g200);border-radius:12px;padding:16px;font-family:var(--fc);font-size:12.5px;line-height:1.75;color:var(--g400);transition:all .3s}
+.result-box.filled{border-style:solid;border-color:var(--green);color:var(--dark);background:rgba(46,213,115,.03)}
+.qprog{height:4px;background:var(--g100);border-radius:2px;margin-bottom:18px;overflow:hidden}
+.qprogb{height:100%;background:linear-gradient(90deg,var(--primary),var(--accent));transition:width .4s;border-radius:2px}
+.quiz-q{font-family:var(--fh);font-size:clamp(15px,2vw,20px);font-weight:700;margin-bottom:16px;line-height:1.3}
+.qnum{font-size:11px;font-weight:600;color:var(--g400);margin-bottom:10px;letter-spacing:.06em;text-transform:uppercase}
+.qo{background:var(--white);border:2px solid var(--g200);border-radius:12px;padding:12px 18px;margin:7px 0;cursor:pointer;transition:all .25s;font-size:14px;line-height:1.5;text-align:left;width:100%;font-family:var(--fb)}
+.qo:hover{border-color:var(--primary);background:rgba(104,91,199,.04)}
+.qo.correct{background:rgba(46,213,115,.08);border-color:var(--green);color:var(--green);cursor:default}
+.qo.wrong{background:rgba(255,71,87,.08);border-color:var(--red);color:var(--red);cursor:default}
+.quiz-exp{background:rgba(181,237,24,.1);border:2px solid var(--accent);border-radius:12px;padding:13px 17px;margin-top:13px;font-size:13px;line-height:1.65}
+.game-cards{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:16px;min-height:32px}
+.game-card{background:var(--white);border:2px solid var(--g200);border-radius:10px;padding:8px 12px;font-size:12.5px;cursor:pointer;transition:all .25s;user-select:none}
+.game-card:hover{border-color:var(--primary)}
+.game-card.active{border-color:var(--primary);background:rgba(104,91,199,.1);transform:scale(1.04);font-weight:700}
+.zones{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:14px}
+.zone{border:3px dashed var(--g200);border-radius:14px;padding:14px;min-height:140px;text-align:center;transition:all .25s;cursor:pointer}
+.zone.good{border-color:rgba(46,213,115,.4)}.zone.bad{border-color:rgba(255,71,87,.4)}
+.zone:hover{background:rgba(104,91,199,.03)}.zone.highlight{border-style:solid;box-shadow:0 0 0 4px rgba(104,91,199,.15)}
+.zone-items{display:flex;flex-wrap:wrap;gap:5px;justify-content:center;margin-top:8px}
+.zone-item{background:var(--g50);border:1.5px solid var(--g200);border-radius:8px;padding:4px 9px;font-size:11.5px;font-weight:600}
+.zone-title{font-family:var(--fh);font-size:15px;font-weight:700;margin-bottom:4px}
+.zone-emoji{font-size:32px;margin-bottom:6px}
+.chk{display:flex;align-items:flex-start;gap:12px;padding:12px 0;cursor:pointer;border-bottom:1px solid var(--g100)}
+.chk:last-child{border-bottom:none}.chk:hover{opacity:.75}
+.cb{width:24px;height:24px;border:2px solid var(--g200);border-radius:6px;flex-shrink:0;display:flex;align-items:center;justify-content:center;transition:all .3s;font-size:14px;margin-top:2px}
+.chk.on .cb{background:var(--green);border-color:var(--green);color:#fff}
+.chk-text{font-size:15px;line-height:1.55;flex:1}
+.hw-slide{background:var(--dark);color:#fff}
+.hwc{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:16px}
+.hw-card{background:rgba(255,255,255,.05);border:2px solid rgba(255,255,255,.12);border-radius:16px;padding:20px;transition:.3s}
+.hw-card:hover{border-color:rgba(181,237,24,.4)}
+.hw-card h3{font-family:var(--fh);font-size:16px;margin-bottom:8px;color:var(--accent)}
+.hw-card p{font-size:14px;line-height:1.7;color:rgba(255,255,255,.7)}
+.compare-box{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.cmp{border-radius:14px;padding:20px;border:2px solid}
+
+/* ===== SPLIT SCREEN PHOTO STYLE ===== */
+.slide-left{
+  flex:0 0 58%;
+  display:flex;
+  align-items:center;
+  justify-content:flex-start;
+  padding:56px 64px;
+  overflow-y:auto;
+  position:relative;
+  z-index:1;
+}
+.slide-left-inner{
+  max-width:580px;
+  width:100%;
+}
+.slide-right-photo{
+  flex:0 0 42%;
+  position:relative;
+  overflow:hidden;
+  background:#f8f7ff;
+}
+.slide-right-photo img{
+  position:absolute;
+  inset:0;
+  width:100%;
+  height:100%;
+  object-fit:contain;
+  object-position:center;
+  padding:24px;
+  image-rendering:-webkit-optimize-contrast;
+}
+/* no overlay needed with object-fit:contain */
+
+@media(max-width:900px){
+  .slide{overflow-y:auto;-webkit-overflow-scrolling:touch}
+  .s1r{display:none}.inn,.inns{padding:28px 18px}
+  .step-grid,.zones,.hwc,.compare-box{grid-template-columns:1fr}
+  #dots{display:none}.tlg{font-size:clamp(20px,5vw,30px)}
+  .pill{padding:10px 20px;font-size:13px}.qo{font-size:13px}
+  .prompt-body{font-size:11px;max-height:150px}
+  .slide-right-photo{display:none}
+  .slide-left{flex:1;padding:28px 18px}
+}
+</style>
+</head>
+<body>
+<div id="tbar"><div id="tfill"></div></div>
+<div id="xp">🎨 <span id="xpv">0</span> XP</div>
+<div id="xptoast">+0 XP</div>
+<div id="dots"></div>
+<div id="cnt"><span id="cc">1</span> / <span id="tc">17</span></div>
+<div id="kh">↑↓ или пробел</div>
+
+<!-- S1 COVER -->
+<section class="slide">
+<div class="s1l">
+  <div class="logo a1"><div class="logo-icon"><div class="logo-a">a</div><div class="logo-dot"></div></div><span class="logo-text">trend</span></div>
+  <div class="ey a2">Модуль 1 · Урок 5</div>
+  <h1 class="txl a3">ИИ-Постеры</h1>
+  <p class="txl a3" style="font-size:clamp(18px,2.2vw,32px);color:var(--primary)">Магия визуального дизайна</p>
+  <p class="blg a4" style="max-width:460px">Мы пересекаем экватор курса. Сегодня превращаемся из исследователей в цифровых дизайнеров, за чью работу бизнес платит реальные деньги</p>
+  <div class="a5" style="display:flex;flex-wrap:wrap;gap:10px;margin-top:4px">
+    <span class="tag ac">🎨 Рекламный постер</span>
+    <span class="tag pr">🚗 Авто-постер</span>
+    <span class="tag">📸 Оживление фото</span>
+    <span class="tag" style="background:rgba(104,91,199,.06)">✨ +500 XP</span>
+  </div>
+</div>
+<div class="s1r">
+  <div class="hero-emoji">🎨</div>
+  <ul class="topic-list" style="position:relative;z-index:1">
+    <li>Маркетинговый анализ через ChatGPT</li>
+    <li>Промпт-инжиниринг: смыслы в пиксели</li>
+    <li>Кейс 1: Cola Cherry — разбор по блокам</li>
+    <li>Кейс 2: Porsche 911 GT3 RS — люкс</li>
+    <li>Практика: карточка товара</li>
+    <li>Бонус: промпты оживления фото</li>
+  </ul>
+</div>
+</section>
+
+<!-- S2 ЭКВАТОР КУРСА -->
+<section class="slide">
+<div class="sc"><div class="inns">
+  <div class="ey a1">Переломный момент</div>
+  <h2 class="tlg a2">Мы пересекли экватор — всё меняется сегодня</h2>
+  <div class="a3" style="margin-top:22px;display:grid;grid-template-columns:1fr 1fr;gap:18px">
+    <div style="padding:22px;border-radius:16px;background:rgba(110,104,147,.07);border:2px solid rgba(110,104,147,.2)">
+      <div style="font-size:28px;margin-bottom:12px">🔍</div>
+      <div style="font-family:var(--fh);font-size:14px;font-weight:700;color:var(--g400);margin-bottom:10px">ДО СЕГОДНЯ</div>
+      <p class="bmd" style="line-height:1.7">Мы были <strong style="color:var(--dark)">исследователями</strong> — изучали кнопки, удивлялись возможностям и генерировали «просто красивые картинки»</p>
+    </div>
+    <div style="padding:22px;border-radius:16px;background:rgba(181,237,24,.07);border:2px solid rgba(181,237,24,.3)">
+      <div style="font-size:28px;margin-bottom:12px">🎨</div>
+      <div style="font-family:var(--fh);font-size:14px;font-weight:700;color:#5a7000;margin-bottom:10px">НАЧИНАЯ СЕГОДНЯ</div>
+      <p class="bmd" style="line-height:1.7">Мы становимся <strong style="color:var(--dark)">цифровыми дизайнерами</strong> — людьми, за чью работу бизнес готов платить огромные деньги</p>
+    </div>
+  </div>
+  <div class="a4" style="margin-top:22px;padding:18px 22px;background:rgba(104,91,199,.06);border-left:4px solid var(--primary);border-radius:12px">
+    <p class="blg"><strong class="tp">Грань 2026 года:</strong> маркетплейсы, онлайн-школы, бренды в Instagram — всем им ежесекундно нужен контент. Но не «просто картинки». Им нужны визуалы, которые <strong>ПРОДАЮТ</strong>. Которые вызывают доверие и останавливают палец на баннере.</p>
+  </div>
+  <div class="a5" style="margin-top:18px;display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px;text-align:center">
+    <div style="padding:14px;border-radius:12px;background:var(--g50);border:2px solid var(--g200)">
+      <div style="font-size:24px;margin-bottom:6px">💸</div>
+      <p class="bmd" style="font-size:12px">Тысячи долларов и недели раньше</p>
+    </div>
+    <div style="padding:14px;border-radius:12px;background:rgba(181,237,24,.07);border:2px solid rgba(181,237,24,.25)">
+      <div style="font-size:24px;margin-bottom:6px">⚡</div>
+      <p class="bmd" style="font-size:12px;color:var(--primary);font-weight:600">Сегодня — ты один с ноутбуком</p>
+    </div>
+    <div style="padding:14px;border-radius:12px;background:var(--g50);border:2px solid var(--g200)">
+      <div style="font-size:24px;margin-bottom:6px">🏆</div>
+      <p class="bmd" style="font-size:12px">Думай как профессионал</p>
+    </div>
+  </div>
+</div></div>
+</section>
+
+<!-- S3 ОШИБКА vs ПУТЬ ПРО -->
+<section class="slide">
+<div class="sc"><div class="inn">
+  <div class="ey a1">Главный выбор</div>
+  <h2 class="tlg a2">Новичок vs Профессиональный дизайнер</h2>
+  <p class="blg a3" style="margin-top:14px">Задача: создать постер для Cola Cherry. Смотри разницу:</p>
+  <div class="compare-box a4" style="margin-top:20px">
+    <div class="cmp" style="border-color:rgba(255,71,87,.3);background:rgba(255,71,87,.04)">
+      <div style="display:flex;align-items:center;gap:10px;margin-bottom:14px">
+        <span style="font-size:24px">❌</span>
+        <div style="font-family:var(--fh);font-size:14px;font-weight:700;color:var(--red)">Типичная ошибка новичка</div>
+      </div>
+      <div style="background:rgba(255,255,255,.7);border-radius:10px;padding:12px 14px;font-family:var(--fc);font-size:13px;color:var(--g400);margin-bottom:12px">"Cool bottle of cola with cherries, high quality, 8k"</div>
+      <p class="bmd" style="line-height:1.7">Результат: симпатичная, но <strong style="color:var(--dark)">бесполезная</strong> картинка. «Шумная», с лишним декором. Бутылка как пластиковая игрушка. Ни одна маркетинговая задача не решена.</p>
+    </div>
+    <div class="cmp" style="border-color:rgba(46,213,115,.3);background:rgba(46,213,115,.04)">
+      <div style="display:flex;align-items:center;gap:10px;margin-bottom:14px">
+        <span style="font-size:24px">✅</span>
+        <div style="font-family:var(--fh);font-size:14px;font-weight:700;color:var(--green)">Путь профессионала</div>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:8px">
+        <div style="display:flex;gap:10px;align-items:flex-start;padding:10px 12px;background:rgba(255,255,255,.7);border-radius:9px"><span style="font-weight:700;color:var(--green);flex-shrink:0">1.</span><span class="bmd">Маркетинговый анализ через ChatGPT</span></div>
+        <div style="display:flex;gap:10px;align-items:flex-start;padding:10px 12px;background:rgba(255,255,255,.7);border-radius:9px"><span style="font-weight:700;color:var(--green);flex-shrink:0">2.</span><span class="bmd">Концепция → Техническое задание</span></div>
+        <div style="display:flex;gap:10px;align-items:flex-start;padding:10px 12px;background:rgba(255,255,255,.7);border-radius:9px"><span style="font-weight:700;color:var(--green);flex-shrink:0">3.</span><span class="bmd">Сборка промпта как часового механизма</span></div>
+        <div style="padding:10px 12px;background:rgba(181,237,24,.1);border-radius:9px;font-weight:700;color:#5a7000;font-size:13px">→ Постер который РАБОТАЕТ как реклама</div>
+      </div>
+    </div>
+  </div>
+  <div class="a5" style="margin-top:16px;padding:14px 18px;background:rgba(181,237,24,.08);border-left:4px solid var(--accent);border-radius:10px">
+    <p class="blg"><strong class="tp">🥇 Золотое правило:</strong> ИИ — это ваш исполнитель. Чем лучше вы подготовите «почву» через анализ, тем меньше правок делаете в нейросети. <strong>Профессиональный дизайн начинается со смысла.</strong></p>
+  </div>
+</div></div>
+</section>
+
+<!-- S4 ШАГ 1 — МАРКЕТИНГОВЫЙ АНАЛИЗ -->
+<section class="slide">
+<div class="sc"><div class="inns">
+  <div class="ey a1">Шаг 1 из 2</div>
+  <h2 class="tlg a2">Маркетинговый анализ через ChatGPT</h2>
+  <p class="blg a3" style="margin-top:14px;max-width:620px">Перед тем как открыть генератор — идём к «мозговому центру». Используем ChatGPT как арт-директора:</p>
+  <div class="prompt-box analysis a4" style="margin-top:16px">
+    <div class="prompt-header"><span>🧠 Промпт-запрос арт-директора — скопируй и адаптируй</span></div>
+    <div class="prompt-body">Ты — ведущий маркетолог и эксперт по визуальному брендингу.
+Проанализируй новый продукт: [НАЗВАНИЕ ПРОДУКТА].
+
+Ответь на вопросы:
+1. Какую ключевую эмоцию должен вызывать визуал?
+   (Энергия или расслабление? Свежесть или премиальность?)
+2. Какие визуальные метафоры подчеркнут продукт?
+   (лёд, брызги, градиенты, частицы, свет?)
+3. Какая цветовая палитра создаст нужное настроение?
+4. Какой стиль съёмки: 3D рендер, фото, минимализм?
+
+После анализа — составь подробный промпт для генерации изображения.</div>
+    <div class="prompt-footer">
+      <button class="cpb" onclick="copyPrompt('analysis')">📋 Скопировать промпт для анализа</button>
+    </div>
+  </div>
+  <div class="a5" style="margin-top:14px;padding:14px 18px;background:rgba(104,91,199,.06);border-left:4px solid var(--primary);border-radius:10px">
+    <p class="blg"><strong class="tp">Что происходит в этот момент:</strong> ChatGPT анализирует тысячи успешных кампаний и выдаёт концепцию. Например для Cola Cherry: <em>«Взрывная свежесть. 3D-рендер. Капли конденсата, лёд, брызги сока, глубокие бордовые оттенки»</em>. Теперь у вас — Техническое Задание!</p>
+  </div>
+</div></div>
+</section>
+
+<!-- S5 ШАГ 2 — ПРОМПТ-ИНЖИНИРИНГ -->
+<section class="slide">
+<div class="sc"><div class="inn">
+  <div class="ey a1">Шаг 2 из 2</div>
+  <h2 class="tlg a2">5 обязательных блоков профессионального промпта</h2>
+  <p class="blg a3" style="margin-top:14px">Собираем промпт как сложный часовой механизм. Каждый блок — своя функция:</p>
+  <div class="a4" style="display:flex;flex-direction:column;gap:10px;margin-top:18px">
+    <div class="block-item">
+      <div class="block-icon">📐</div>
+      <div><div class="block-label">БЛОК 1: ФОРМАТ</div><p class="bmd">«Ultra-realistic 3D commercial-style product shot» — говоришь нейросети КАК работать. Отсекаешь мультики, рисунки, лоу-фай.</p></div>
+    </div>
+    <div class="block-item">
+      <div class="block-icon">⚡</div>
+      <div><div class="block-label">БЛОК 2: ФИЗИКА</div><p class="bmd">«Suspended mid-air with intricate condensation droplets» — парение = динамика. Капли конденсата = триггер свежести. Без них нет ощущения холодного напитка.</p></div>
+    </div>
+    <div class="block-item">
+      <div class="block-icon">🌀</div>
+      <div><div class="block-label">БЛОК 3: ОКРУЖЕНИЕ</div><p class="bmd">«Splashing droplets, cherries, ice cubes frozen in motion» — «застывшее мгновение». Классика фуд-фотографии. Всегда выглядит дорого.</p></div>
+    </div>
+    <div class="block-item">
+      <div class="block-icon">🎨</div>
+      <div><div class="block-label">БЛОК 4: ПСИХОЛОГИЯ ЦВЕТА</div><p class="bmd">«Rich, deep red and burgundy gradient» — не просто «красный». Оттенки вишнёвой косточки и дорогого вина. Подсознательно шепчет: «Это премиально».</p></div>
+    </div>
+    <div class="block-item">
+      <div class="block-icon">💡</div>
+      <div><div class="block-label">БЛОК 5: ОСВЕЩЕНИЕ</div><p class="bmd">«Cinematic studio-style lighting with bright highlights» — студийный свет = объём. Блики на стекле делают бутылку «настоящей».</p></div>
+    </div>
+  </div>
+</div></div>
+</section>
+
+<!-- S6 КЕЙС 1 — COLA CHERRY промпты (SPLIT SCREEN) -->
+<section class="slide">
+  <div class="slide-left">
+    <div class="slide-left-inner">
+      <div class="ey a1">Кейс 1 · Cola Cherry</div>
+      <h2 class="tlg a2">🍒 Рекламный постер Cola Cherry</h2>
+      <p class="blg a3" style="margin-top:12px">Готовые промпты — скопируй и вставь в Gemini или Higgsfield:</p>
+      <div class="a4">
+        <div class="prompt-box ru">
+          <div class="prompt-header"><span>🇷🇺 Русский · Cola Cherry постер</span></div>
+          <div class="prompt-body">Создай ультрареалистичный 3D коммерческий продуктовый снимок бутылки Coca-Cola Cherry.
+Бутылка парит в воздухе с мельчайшими каплями конденсата на поверхности.
+Окружение: динамичные брызги, вишни, кубики льда в движении.
+Фон: глубокий красно-бордовый градиент.
+Освещение: кинематографическое студийное с яркими бликами.
+Атмосфера: роскошная, соблазнительная, премиальная.
+Стиль: коммерческая реклама уровня крупного бренда, 8K разрешение.</div>
+          <div class="prompt-footer">
+            <button class="cpb" onclick="copyPrompt('cola-ru')">📋 Скопировать RU</button>
+          </div>
+        </div>
+        <div class="prompt-box en">
+          <div class="prompt-header"><span>🇬🇧 English · Cola Cherry poster</span></div>
+          <div class="prompt-body">Create an ultra-realistic 3D commercial-style product shot of a Coca-Cola Cherry bottle.
+The bottle is suspended mid-air with intricate condensation droplets on the surface.
+Surround with dynamic elements: splashing droplets, cherries, ice cubes frozen in high-speed motion.
+Background: rich, deep red and burgundy gradient.
+Lighting: cinematic, studio-style with bright highlights and dramatic shadows.
+Atmosphere: luxurious, indulgent, premium feel.
+Style: high-end commercial advertising render, 8K resolution.</div>
+          <div class="prompt-footer">
+            <button class="cpb" onclick="copyPrompt('cola-en')">📋 Copy EN</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="slide-right-photo" style="background:#1a0008;">
+    <img src="cola.avif" alt="Cola Cherry poster">
+  </div>
+</section>
+
+<!-- S7 КЕЙС 2 — PORSCHE разбор (SPLIT SCREEN) -->
+<section class="slide">
+  <div class="slide-left">
+    <div class="slide-left-inner">
+      <div class="ey a1">Кейс 2 · Luxury</div>
+      <h2 class="tlg a2">🚗 Porsche 911 GT3 RS — разбор люкс-промпта</h2>
+      <p class="blg a3" style="margin-top:14px">Переходим в лигу Luxury. Промпт для автомобиля — хирургическая работа:</p>
+      <div class="a4" style="display:flex;flex-direction:column;gap:10px;margin-top:18px">
+        <div class="block-item" style="border-color:rgba(255,71,87,.25)">
+          <div class="block-icon">🎯</div>
+          <div><div class="block-label" style="color:var(--red)">СТИЛЬ = «High-end automotive poster design»</div><p class="bmd">Эта фраза меняет алгоритм. ИИ ищет референсы в базе глянцевых журналов и официальных рендеров Porsche.</p></div>
+        </div>
+        <div class="block-item" style="border-color:rgba(255,165,2,.25)">
+          <div class="block-icon">📏</div>
+          <div><div class="block-label" style="color:var(--orange)">КОМПОЗИЦИЯ = «Multiple vertical rectangular panels»</div><p class="bmd">Берём под контроль макет. Не позволяем ИИ лепить машину как попало — задаём структуру, готовую под верстку.</p></div>
+        </div>
+        <div class="block-item" style="border-color:rgba(104,91,199,.25)">
+          <div class="block-icon">💡</div>
+          <div><div class="block-label">СВЕТ = «Soft cinematic studio lighting»</div><p class="bmd">Мягкий свет подчёркивает изгибы кузова и металлические блики. Именно он делает рендер «живым».</p></div>
+        </div>
+        <div class="block-item" style="border-color:rgba(46,213,115,.25)">
+          <div class="block-icon">🚫</div>
+          <div><div class="block-label" style="color:var(--green)">НЕГАТИВНЫЙ БЛОК = «No people, no city»</div><p class="bmd">В премиальной рекламе — минимализм. Убираем всё лишнее чтобы ничто не отвлекало от совершенства машины.</p></div>
+        </div>
+      </div>
+      <div class="a5" style="margin-top:14px;padding:12px 16px;background:rgba(181,237,24,.08);border-left:4px solid var(--accent);border-radius:10px">
+        <p class="blg"><strong class="tp">Фактически вы не пишете текст.</strong> Вы работаете <strong>Арт-директором</strong> — раздаёте указания осветителю, декоратору и оператору.</p>
+      </div>
+    </div>
+  </div>
+  <div class="slide-right-photo" style="background:#0a0a0a;">
+    <img src="porche.avif" alt="Porsche 911 GT3 RS">
+  </div>
+</section>
+
+<!-- S8 КЕЙС 2 — PORSCHE промпты (SPLIT SCREEN) -->
+<section class="slide">
+  <div class="slide-left">
+    <div class="slide-left-inner">
+      <div class="ey a1">Кейс 2 · Промпты</div>
+      <h2 class="tlg a2">🚗 Porsche 911 GT3 RS — промпты</h2>
+      <div class="a3">
+        <div class="prompt-box ru">
+          <div class="prompt-header"><span>🇷🇺 Русский · Porsche постер</span></div>
+          <div class="prompt-body">Дизайн высококлассного автомобильного постера: Porsche 911 GT3 RS.
+Композиция с несколькими вертикальными панелями.
+Основной кадр: автомобиль на чёрном фоне.
+Дополнительные панели: детали — логотип, колёса, рычаг КПП.
+Стиль: ультрареалистичный 3D рендер, мягкое кинематографическое студийное освещение.
+Типографика в стиле немецкого минимализма.
+Без людей, без города, без фона.
+Цветовая схема: антрацит, серебро, акцент красного.
+Профессиональное глянцевое качество издания.</div>
+          <div class="prompt-footer">
+            <button class="cpb" onclick="copyPrompt('porsche-ru')">📋 Скопировать RU</button>
+          </div>
+        </div>
+        <div class="prompt-box en">
+          <div class="prompt-header"><span>🇬🇧 English · Porsche poster</span></div>
+          <div class="prompt-body">High-end automotive poster design: Porsche 911 GT3 RS.
+Composition with multiple vertical rectangular panels.
+Main shot: car on black background.
+Detail panels: logo, wheels, gear shift.
+Style: ultra-realistic 3D render, soft cinematic studio lighting.
+Typography in German minimalist style.
+No people, no city, no background elements.
+Color scheme: anthracite, silver, red accent.
+Professional magazine-quality finish.</div>
+          <div class="prompt-footer">
+            <button class="cpb" onclick="copyPrompt('porsche-en')">📋 Copy EN</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="slide-right-photo" style="background:#0a0a0a;">
+    <img src="porche.avif" alt="Porsche 911 GT3 RS">
+  </div>
+</section>
+
+<!-- S9 КОНСТРУКТОР ПРОМПТА -->
+<section class="slide">
+<div class="sc"><div class="inn">
+  <div class="ey a1">Практика 1 · Конструктор</div>
+  <h2 class="tlg a2">Собери промпт для Макси Чай (или своего товара)</h2>
+  <p class="blg a3" style="margin-top:12px">Выбирай блоки — промпт строится автоматически. Потом скопируй и запусти в Gemini или Higgsfield:</p>
+  <div class="a4" style="margin-top:16px;display:flex;flex-direction:column;gap:12px">
+    <div>
+      <p class="bmd" style="margin-bottom:8px;font-weight:700">📐 Формат:</p>
+      <div class="block-shelf">
+        <div class="cblk" onclick="addBlock(this,'Ultra-realistic 3D product shot')">3D рендер</div>
+        <div class="cblk" onclick="addBlock(this,'commercial photography style')">Фото-стиль</div>
+        <div class="cblk" onclick="addBlock(this,'minimalist editorial design')">Минимализм</div>
+        <div class="cblk" onclick="addBlock(this,'high-end advertising visual')">Реклама</div>
+      </div>
+    </div>
+    <div>
+      <p class="bmd" style="margin-bottom:8px;font-weight:700">🧊 Детали продукта:</p>
+      <div class="block-shelf">
+        <div class="cblk" onclick="addBlock(this,'sweating glass bottle with condensation droplets')">Запотевшая бутылка</div>
+        <div class="cblk" onclick="addBlock(this,'ice cubes floating around')">Кубики льда</div>
+        <div class="cblk" onclick="addBlock(this,'fresh mint leaves')">Листик мяты</div>
+        <div class="cblk" onclick="addBlock(this,'lemon slices flying around')">Дольки лимона</div>
+        <div class="cblk" onclick="addBlock(this,'product label clearly visible')">Этикетка чёткая</div>
+      </div>
+    </div>
+    <div>
+      <p class="bmd" style="margin-bottom:8px;font-weight:700">🌊 Окружение:</p>
+      <div class="block-shelf">
+        <div class="cblk" onclick="addBlock(this,'dynamic tea splashes in motion')">Брызги чая</div>
+        <div class="cblk" onclick="addBlock(this,'dramatic gradient background')">Градиентный фон</div>
+        <div class="cblk" onclick="addBlock(this,'golden hour sunset lighting')">Закатный свет</div>
+        <div class="cblk" onclick="addBlock(this,'bright midday summer light')">Полуденный свет</div>
+        <div class="cblk" onclick="addBlock(this,'deep blue cool background')">Синий холодный фон</div>
+      </div>
+    </div>
+    <div>
+      <p class="bmd" style="margin-bottom:8px;font-weight:700">✨ Финиш:</p>
+      <div class="block-shelf">
+        <div class="cblk" onclick="addBlock(this,'8K resolution')">8K</div>
+        <div class="cblk" onclick="addBlock(this,'cinematic studio lighting')">Студийный свет</div>
+        <div class="cblk" onclick="addBlock(this,'hyper-detailed textures')">Детализация</div>
+        <div class="cblk" onclick="addBlock(this,'premium advertising quality')">Премиум</div>
+      </div>
+    </div>
+    <div id="prompt-result" class="result-box">Выбирай блоки выше — промпт строится здесь...</div>
+    <div style="display:flex;gap:10px;flex-wrap:wrap">
+      <button class="pill ac sm" onclick="copyBuiltPrompt()">📋 Скопировать готовый промпт</button>
+      <button class="pill pr sm" style="background:var(--g50);color:var(--dark);border:2px solid var(--g200)" onclick="resetBuilder()">🔄 Сбросить</button>
+    </div>
+  </div>
+</div></div>
+</section>
+
+<!-- S10 ПРАКТИКА — ПЛАН ДЕЙСТВИЙ -->
+<section class="slide">
+<div class="sc"><div class="inns">
+  <div class="ey a1">Практика 2 · 5 шагов</div>
+  <h2 class="tlg a2">Создай рекламную карточку по плану профессионала</h2>
+  <p class="blg a3" style="margin-top:14px">Задание: постер для Макси Чай или любого другого продукта на твой выбор:</p>
+  <div class="a4" style="margin-top:18px;display:flex;flex-direction:column;gap:10px">
+    <div style="display:flex;gap:14px;padding:14px 18px;background:var(--white);border:2px solid var(--g200);border-radius:13px;align-items:flex-start">
+      <div style="width:32px;height:32px;border-radius:8px;background:var(--primary);color:#fff;font-family:var(--fh);font-weight:700;font-size:14px;display:flex;align-items:center;justify-content:center;flex-shrink:0">1</div>
+      <div><div style="font-family:var(--fh);font-size:14px;font-weight:700;margin-bottom:4px">Анализ товара через ChatGPT</div><p class="bmd">Зайди в ChatGPT. Спроси: «Как мне продать холодный чай в жаркий полдень через одну картинку?» Получи концепцию.</p></div>
+    </div>
+    <div style="display:flex;gap:14px;padding:14px 18px;background:var(--white);border:2px solid var(--g200);border-radius:13px;align-items:flex-start">
+      <div style="width:32px;height:32px;border-radius:8px;background:var(--primary);color:#fff;font-family:var(--fh);font-weight:700;font-size:14px;display:flex;align-items:center;justify-content:center;flex-shrink:0">2</div>
+      <div><div style="font-family:var(--fh);font-size:14px;font-weight:700;margin-bottom:4px">Собери промпт по блокам</div><p class="bmd">Используй конструктор с прошлого слайда или напиши свой: Стиль + Детали продукта + Окружение + Освещение.</p></div>
+    </div>
+    <div style="display:flex;gap:14px;padding:14px 18px;background:var(--white);border:2px solid var(--g200);border-radius:13px;align-items:flex-start">
+      <div style="width:32px;height:32px;border-radius:8px;background:var(--orange);color:#fff;font-family:var(--fh);font-weight:700;font-size:14px;display:flex;align-items:center;justify-content:center;flex-shrink:0">3</div>
+      <div><div style="font-family:var(--fh);font-size:14px;font-weight:700;margin-bottom:4px">Запусти одновременно в двух ИИ</div><p class="bmd">Отправь промпт и в Gemini, и в Higgsfield (Nano Banana Pro). Получи два результата для сравнения.</p></div>
+    </div>
+    <div style="display:flex;gap:14px;padding:14px 18px;background:var(--white);border:2px solid var(--g200);border-radius:13px;align-items:flex-start">
+      <div style="width:32px;height:32px;border-radius:8px;background:var(--cyan);color:#fff;font-family:var(--fh);font-weight:700;font-size:14px;display:flex;align-items:center;justify-content:center;flex-shrink:0">4</div>
+      <div><div style="font-family:var(--fh);font-size:14px;font-weight:700;margin-bottom:4px">Проведи аудит результатов</div><p class="bmd">Какой ИИ лучше передал текстуру жидкости? Где лёд прозрачнее? Где этикетка читается чётче?</p></div>
+    </div>
+    <div style="display:flex;gap:14px;padding:14px 18px;background:rgba(181,237,24,.08);border:2px solid rgba(181,237,24,.3);border-radius:13px;align-items:flex-start">
+      <div style="width:32px;height:32px;border-radius:8px;background:var(--accent);color:var(--dark);font-family:var(--fh);font-weight:700;font-size:14px;display:flex;align-items:center;justify-content:center;flex-shrink:0">5</div>
+      <div><div style="font-family:var(--fh);font-size:14px;font-weight:700;margin-bottom:4px">Итерируй и улучшай</div><p class="bmd">Добавь: название бренда на этикетке, конкретный объём, измени освещение на «закатное». Каждая итерация = лучше.</p></div>
+    </div>
+  </div>
+</div></div>
+</section>
+
+<!-- S11 ПРАКТИКА — TEXTAREA -->
+<section class="slide">
+<div class="sc"><div class="inns">
+  <div class="ey a1">Практика 3 · Твой промпт</div>
+  <h2 class="tlg a2">Напиши свой промпт для рекламного постера</h2>
+  <p class="blg a3" style="margin-top:14px">Выбери товар и составь полный промпт по 5 блокам (формат, физика, окружение, цвет, освещение):</p>
+  <div class="a4" style="margin-top:14px">
+    <div style="display:flex;flex-wrap:wrap;gap:7px;margin-bottom:12px">
+      <p class="bmd" style="width:100%;font-weight:700;margin-bottom:6px">Выбери категорию товара:</p>
+      <div class="cblk" onclick="setProduct(this,'напиток')">🥤 Напиток</div>
+      <div class="cblk" onclick="setProduct(this,'автомобиль')">🚗 Авто</div>
+      <div class="cblk" onclick="setProduct(this,'смартфон')">📱 Смартфон</div>
+      <div class="cblk" onclick="setProduct(this,'одежда')">👗 Одежда</div>
+      <div class="cblk" onclick="setProduct(this,'парфюм')">🌸 Парфюм</div>
+      <div class="cblk" onclick="setProduct(this,'еда')">🍕 Еда</div>
+    </div>
+    <textarea class="practice-area" id="p3" rows="8" placeholder="Напиши свой промпт здесь:&#10;&#10;Формат: [стиль съёмки]&#10;Продукт: [название и детали]&#10;Физика: [парение, движение, капли]&#10;Окружение: [декор, фон, брызги]&#10;Освещение: [студийное, закат, ...]&#10;Финиш: [8K, premium quality]"></textarea>
+    <div style="display:flex;gap:10px;margin-top:10px;flex-wrap:wrap">
+      <button class="pill pr sm" onclick="checkP(3)">🎨 Готово +150 XP</button>
+      <button class="cpb" onclick="copyArea('p3')">📋 Скопировать мой промпт</button>
+    </div>
+    <div id="p3f" style="margin-top:8px;display:none"></div>
+  </div>
+</div></div>
+</section>
+
+<!-- S12 БОНУС — 4 WOW ПРОМПТА (SPLIT SCREEN) -->
+<section class="slide" style="overflow-y:auto">
+  <!-- LEFT: промпты -->
+  <div style="flex:0 0 56%;display:flex;flex-direction:column;justify-content:center;padding:52px 56px;overflow-y:auto;gap:0">
+    <div class="ey a1">🎁 Бонус · WOW-промпты</div>
+    <h2 class="tlg a2" style="margin-top:10px;margin-bottom:18px">4 промпта которые взрывают мозг</h2>
+
+    <!-- ПРОМПТ 1 -->
+    <div class="a3" style="background:var(--white);border:2px solid var(--g200);border-radius:14px;overflow:hidden;margin-bottom:14px">
+      <div style="padding:10px 16px;background:linear-gradient(90deg,rgba(255,107,129,.08),rgba(104,91,199,.05));border-bottom:1px solid var(--g100);display:flex;align-items:center;gap:8px">
+        <span>👗</span>
+        <span style="font-family:var(--fh);font-size:12px;font-weight:700;color:var(--primary)">ПРОМПТ 1 — Обложка Vogue</span>
+        <span style="font-size:11px;color:var(--g400)">· аниме-персонаж как модель журнала</span>
+      </div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;border-bottom:1px solid var(--g100)">
+        <div style="padding:12px 14px;border-right:1px solid var(--g100)">
+          <div style="font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:#5a7000;margin-bottom:6px">🇷🇺 RU</div>
+          <div style="font-family:var(--fc);font-size:11px;line-height:1.7;color:var(--dark);background:#FDFCFF;border-radius:6px;padding:8px 10px;border-left:2px solid var(--accent);max-height:90px;overflow-y:auto" id="p1-ru">Реалистичный портрет Йор Форджер из «Семья Шпиона» как высококлассной модели на обложке журнала VOGUE. Элегантный чёрный костюм ассасина, уверенный и таинственный взгляд, аккуратная причёска, кинематографическое освещение. Логотип Vogue сверху, макет модного журнала, минималистичный фон, стиль профессиональной фотографии.</div>
+          <button class="cpb" style="margin-top:6px;padding:6px 12px;font-size:11px" onclick="copyPrompt('vogue-ru')">📋 RU</button>
+        </div>
+        <div style="padding:12px 14px">
+          <div style="font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:#1a6640;margin-bottom:6px">🇬🇧 EN</div>
+          <div style="font-family:var(--fc);font-size:11px;line-height:1.7;color:var(--dark);background:#FDFCFF;border-radius:6px;padding:8px 10px;border-left:2px solid var(--green);max-height:90px;overflow-y:auto" id="p1-en">Realistic portrait of Yor Forger from Spy Family as a high-fashion model on the cover of VOGUE magazine. Elegant black assassin outfit that she wears, confident and mysterious expression, sleek hairstyle, cinematic lighting. Vogue logo at the top, fashion magazine layout, minimalist background, professional photography style.</div>
+          <button class="cpb" style="margin-top:6px;padding:6px 12px;font-size:11px" onclick="copyPrompt('vogue-en')">📋 EN</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- ПРОМПТ 2 -->
+    <div class="a4" style="background:var(--white);border:2px solid var(--g200);border-radius:14px;overflow:hidden;margin-bottom:14px">
+      <div style="padding:10px 16px;background:linear-gradient(90deg,rgba(255,165,2,.07),rgba(255,71,87,.04));border-bottom:1px solid var(--g100);display:flex;align-items:center;gap:8px">
+        <span>📸</span>
+        <span style="font-family:var(--fh);font-size:12px;font-weight:700;color:var(--orange)">ПРОМПТ 2 — Paparazzi / TMZ</span>
+        <span style="font-size:11px;color:var(--g400)">· замени [ИМЯ] на своё</span>
+      </div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;border-bottom:1px solid var(--g100)">
+        <div style="padding:12px 14px;border-right:1px solid var(--g100)">
+          <div style="font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:#5a7000;margin-bottom:6px">🇷🇺 RU</div>
+          <div style="font-family:var(--fc);font-size:11px;line-height:1.7;color:var(--dark);background:#FDFCFF;border-radius:6px;padding:8px 10px;border-left:2px solid var(--accent);max-height:90px;overflow-y:auto" id="p2-ru">Фото папарацци: знаменитость застигнута врасплох выходящей из ночного клуба в 3 ночи, дизайнерские солнечные очки слегка съехали, в руке зелёный смузи, избегает взгляда камеры. Водяной знак TMZ в углу. Заголовок: «[ИМЯ] ДИКАЯ НОЧЬ: Звезда говорит "Без комментариев"».</div>
+          <button class="cpb" style="margin-top:6px;padding:6px 12px;font-size:11px" onclick="copyPrompt('paparazzi-ru')">📋 RU</button>
+        </div>
+        <div style="padding:12px 14px">
+          <div style="font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:#1a6640;margin-bottom:6px">🇬🇧 EN</div>
+          <div style="font-family:var(--fc);font-size:11px;line-height:1.7;color:var(--dark);background:#FDFCFF;border-radius:6px;padding:8px 10px;border-left:2px solid var(--green);max-height:90px;overflow-y:auto" id="p2-en">Paparazzi photo of [NAME] caught leaving a nightclub at 3am, designer sunglasses slightly askew, holding a green smoothie and avoiding eye contact with the camera. TMZ watermark in corner. Headline reads "[NAME] WILD NIGHT: Star Says 'No Comment'".</div>
+          <button class="cpb" style="margin-top:6px;padding:6px 12px;font-size:11px" onclick="copyPrompt('paparazzi-en')">📋 EN</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- ПРОМПТ 3 -->
+    <div class="a5" style="background:var(--white);border:2px solid var(--g200);border-radius:14px;overflow:hidden;margin-bottom:14px">
+      <div style="padding:10px 16px;background:linear-gradient(90deg,rgba(29,209,161,.07),rgba(104,91,199,.05));border-bottom:1px solid var(--g100);display:flex;align-items:center;gap:8px">
+        <span>🎬</span>
+        <span style="font-family:var(--fh);font-size:12px;font-weight:700;color:var(--cyan)">ПРОМПТ 3 — Кинопортрет 8K</span>
+        <span style="font-size:11px;color:var(--g400)">· прикрепи своё фото как референс</span>
+      </div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;border-bottom:1px solid var(--g100)">
+        <div style="padding:12px 14px;border-right:1px solid var(--g100)">
+          <div style="font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:#5a7000;margin-bottom:6px">🇷🇺 RU</div>
+          <div style="font-family:var(--fc);font-size:11px;line-height:1.7;color:var(--dark);background:#FDFCFF;border-radius:6px;padding:8px 10px;border-left:2px solid var(--accent);max-height:90px;overflow-y:auto" id="p3-ru">Создай гиперреалистичный 8K UHD кинематографический постер-портрет женщины в крутом образе, вдохновлённом референсным изображением. Объектив 35мм, f/1.8, резкий фокус, кремовое боке, кинематографическая цветокоррекция, детальная текстура кожи как с зеркальной камеры.</div>
+          <button class="cpb" style="margin-top:6px;padding:6px 12px;font-size:11px" onclick="copyPrompt('cinema-ru')">📋 RU</button>
+        </div>
+        <div style="padding:12px 14px">
+          <div style="font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:#1a6640;margin-bottom:6px">🇬🇧 EN</div>
+          <div style="font-family:var(--fc);font-size:11px;line-height:1.7;color:var(--dark);background:#FDFCFF;border-radius:6px;padding:8px 10px;border-left:2px solid var(--green);max-height:90px;overflow-y:auto" id="p3-en">Create a hyper-realistic 8K UHD cinematic poster portrait of a woman inspired by the reference image. Shot on 35mm lens, f/1.8, sharp focus, creamy bokeh, cinematic color grading, detailed DSLR skin texture. Natural realistic look.</div>
+          <button class="cpb" style="margin-top:6px;padding:6px 12px;font-size:11px" onclick="copyPrompt('cinema-en')">📋 EN</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- ПРОМПТ 4 -->
+    <div class="a6" style="background:var(--white);border:2px solid var(--g200);border-radius:14px;overflow:hidden">
+      <div style="padding:10px 16px;background:linear-gradient(90deg,rgba(15,11,42,.06),rgba(181,237,24,.06));border-bottom:1px solid var(--g100);display:flex;align-items:center;gap:8px">
+        <span>🔴</span>
+        <span style="font-family:var(--fh);font-size:12px;font-weight:700;color:var(--dark)">ПРОМПТ 4 — Chill-Out Poster</span>
+        <span style="font-size:11px;color:var(--g400)">· streetwear графический арт</span>
+      </div>
+      <div style="display:grid;grid-template-columns:1fr 1fr">
+        <div style="padding:12px 14px;border-right:1px solid var(--g100)">
+          <div style="font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:#5a7000;margin-bottom:6px">🇷🇺 RU</div>
+          <div style="font-family:var(--fc);font-size:11px;line-height:1.7;color:var(--dark);background:#FDFCFF;border-radius:6px;padding:8px 10px;border-left:2px solid var(--accent);max-height:90px;overflow-y:auto" id="p4-ru">Современный графический постер «Chill-out». Парень в красном худи, чёрных штанах с отворотами, кроссовках Air Jordan, тёмных очках, серебряных кольцах. Сидит расслабленно на крупной типографике. Матовый чёрный фон. Крупный белый шрифт «chill/out». Оранжевые круги, квадраты. «Жизнь проще когда расслабляешься».</div>
+          <button class="cpb" style="margin-top:6px;padding:6px 12px;font-size:11px" onclick="copyPrompt('chill-ru')">📋 RU</button>
+        </div>
+        <div style="padding:12px 14px">
+          <div style="font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:#1a6640;margin-bottom:6px">🇬🇧 EN</div>
+          <div style="font-family:var(--fc);font-size:11px;line-height:1.7;color:var(--dark);background:#FDFCFF;border-radius:6px;padding:8px 10px;border-left:2px solid var(--green);max-height:90px;overflow-y:auto" id="p4-en">Design a modern graphic poster titled "Chill-out." Red hoodie, black cuffed joggers, Air Jordan sneakers, dark sunglasses, silver rings. Relaxed reclined pose leaning on oversized typography. Matte black background. Bold white "chill/out" text like a bench, "chill" underlined. Orange circles, squares, white grid lines. "Life is so much easier when you just chill-out."</div>
+          <button class="cpb" style="margin-top:6px;padding:6px 12px;font-size:11px" onclick="copyPrompt('chill-en')">📋 EN</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- RIGHT: photo result block -->
+  <div style="flex:0 0 44%;position:relative;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:40px 32px;background:var(--dark);gap:20px">
+    <!-- decorative dots bg -->
+    <div style="position:absolute;inset:0;background:url('data:image/svg+xml;utf8,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%2240%22 height=%2240%22><circle cx=%222%22 cy=%222%22 r=%221%22 fill=%22%23B5ED18%22 opacity=%22.07%22/></svg>');pointer-events:none"></div>
+
+    <!-- label -->
+    <div style="position:relative;z-index:1;text-align:center">
+      <div style="font-family:var(--fh);font-size:10px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--accent);margin-bottom:6px">Результат генерации</div>
+      <div style="font-size:12px;color:rgba(255,255,255,.45)">Поставь сюда фото результата</div>
+    </div>
+
+    <!-- PHOTO FRAME 1 — portrait editorial style -->
+    <div style="position:relative;z-index:1;width:100%;max-width:280px">
+      <div style="
+        width:100%;
+        aspect-ratio:3/4;
+        border-radius:16px;
+        overflow:hidden;
+        border:2px solid rgba(181,237,24,.25);
+        background:rgba(255,255,255,.04);
+        display:flex;
+        align-items:center;
+        justify-content:center;
+        box-shadow:0 20px 60px rgba(0,0,0,.5), inset 0 0 0 1px rgba(255,255,255,.06);
+        position:relative;
+      ">
+        <!-- placeholder inner -->
+        <!-- вместо placeholder inner -->
+<img src="yor.png" alt="Vogue result" style="
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  object-position:top center;
+  display:block;
+">
+
+        <!-- corner accents -->
+        <div style="position:absolute;top:10px;left:10px;width:18px;height:18px;border-top:2px solid var(--accent);border-left:2px solid var(--accent);border-radius:3px 0 0 0"></div>
+        <div style="position:absolute;top:10px;right:10px;width:18px;height:18px;border-top:2px solid var(--accent);border-right:2px solid var(--accent);border-radius:0 3px 0 0"></div>
+        <div style="position:absolute;bottom:10px;left:10px;width:18px;height:18px;border-bottom:2px solid var(--accent);border-left:2px solid var(--accent);border-radius:0 0 0 3px"></div>
+        <div style="position:absolute;bottom:10px;right:10px;width:18px;height:18px;border-bottom:2px solid var(--accent);border-right:2px solid var(--accent);border-radius:0 0 3px 0"></div>
+      </div>
+      <!-- caption bar below frame -->
+      <div style="margin-top:12px;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1);border-radius:10px;padding:8px 14px;display:flex;align-items:center;justify-content:space-between">
+        <div style="font-size:11px;color:rgba(255,255,255,.5)">AI Generated</div>
+        <div style="display:flex;gap:4px">
+          <div style="width:6px;height:6px;border-radius:50%;background:rgba(181,237,24,.5)"></div>
+          <div style="width:6px;height:6px;border-radius:50%;background:rgba(255,255,255,.2)"></div>
+          <div style="width:6px;height:6px;border-radius:50%;background:rgba(255,255,255,.2)"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- second smaller frame hint -->
+  <!-- second smaller frame hint -->
+<div style="position:relative;z-index:1;display:flex;gap:10px">
+
+  <div style="width:70px;height:88px;border-radius:10px;border:1.5px solid rgba(255,255,255,.15);overflow:hidden;flex-shrink:0">
+    <img src="chill.png" style="width:100%;height:100%;object-fit:cover;object-position:top;display:block">
+  </div>
+
+  <div style="width:70px;height:88px;border-radius:10px;border:1.5px solid rgba(255,255,255,.15);overflow:hidden;flex-shrink:0">
+    <img src="paparazzi.png" style="width:100%;height:100%;object-fit:cover;object-position:top;display:block">
+  </div>
+
+  <div style="width:70px;height:88px;border-radius:10px;border:1.5px solid rgba(255,255,255,.15);overflow:hidden;flex-shrink:0">
+    <img src="cinema.png" style="width:100%;height:100%;object-fit:cover;object-position:top;display:block">
+  </div>
+
+</div>
+    <div style="position:relative;z-index:1;font-size:11px;color:rgba(255,255,255,.25);text-align:center">можно добавить несколько результатов</div>
+  </div>
+</section>
+
+
+<section class="slide">
+<div class="sc"><div class="inns">
+  <div class="ey a1">Квиз</div>
+  <h2 class="tlg a2">Проверь знания дизайнера! 🎨</h2>
+  <div class="qprog" style="margin-top:14px"><div class="qprogb" id="qprogb" style="width:0%"></div></div>
+  <div id="quiz-container" style="margin-top:12px"></div>
+</div></div>
+</section>
+
+<!-- S15 СОРТИРОВКА -->
+<section class="slide">
+<div class="sc"><div class="inn">
+  <div class="ey a1">Мини-игра</div>
+  <h2 class="tlg a2">Профессиональный блок или слабый?</h2>
+  <p class="blg a3" style="margin-top:12px">Кликни карточку → кликни зону:</p>
+  <div class="game-cards a4" id="game-cards" style="margin-top:14px"></div>
+  <div class="zones a5">
+    <div class="zone good" id="zone-good" onclick="placeCard(true)">
+      <div class="zone-emoji">✅</div>
+      <div class="zone-title">Профессионально</div>
+      <p class="bmd">Точно, конкретно, образно</p>
+      <div class="zone-items" id="zone-good-items"></div>
+    </div>
+    <div class="zone bad" id="zone-bad" onclick="placeCard(false)">
+      <div class="zone-emoji">❌</div>
+      <div class="zone-title">Слабый промпт</div>
+      <p class="bmd">Расплыто, без деталей</p>
+      <div class="zone-items" id="zone-bad-items"></div>
+    </div>
+  </div>
+  <div style="text-align:center;margin-top:8px">
+    <button class="pill pr sm" id="check-game" onclick="checkGame()" style="display:none">Проверить</button>
+    <button class="pill ac sm" id="reset-game" onclick="resetGame()" style="display:none;margin-left:8px">Заново</button>
+  </div>
+  <div id="game-result" style="margin-top:12px;text-align:center;font-size:16px;font-weight:600"></div>
+</div></div>
+</section>
+
+<!-- S16 ЧЕКЛИСТ -->
+<section class="slide">
+<div class="sc"><div class="inns">
+  <div class="ey a1">Чек-лист</div>
+  <h2 class="tlg a2">Чек-лист цифрового дизайнера ✅</h2>
+  <p class="blg a3" style="margin-top:14px">Отметь всё — +100 XP!</p>
+  <div class="a4" style="margin-top:16px">
+    <div class="chk" onclick="toggle(this)"><div class="cb"></div><div class="chk-text">Я провёл маркетинговый анализ товара через ChatGPT перед генерацией</div></div>
+    <div class="chk" onclick="toggle(this)"><div class="cb"></div><div class="chk-text">Я понимаю зачем нужен каждый из 5 блоков промпта (формат, физика, окружение, цвет, свет)</div></div>
+    <div class="chk" onclick="toggle(this)"><div class="cb"></div><div class="chk-text">Я знаю разницу между промптом новичка и промптом профессионала</div></div>
+    <div class="chk" onclick="toggle(this)"><div class="cb"></div><div class="chk-text">Я создал промпт по конструктору и скопировал его</div></div>
+    <div class="chk" onclick="toggle(this)"><div class="cb"></div><div class="chk-text">Я запустил промпт в двух ИИ и сравнил результаты</div></div>
+    <div class="chk" onclick="toggle(this)"><div class="cb"></div><div class="chk-text">Я знаю когда использовать Gemini, а когда Higgsfield</div></div>
+    <div class="chk" onclick="toggle(this)"><div class="cb"></div><div class="chk-text">Я скопировал промпты для реставрации и оживления фото</div></div>
+    <div class="chk" onclick="toggle(this)"><div class="cb"></div><div class="chk-text">Я готов сделать домашнее задание — постер для товара своей жизни!</div></div>
+  </div>
+  <div id="checklist-done" style="margin-top:16px;display:none;text-align:center;padding:16px;background:rgba(46,213,115,.08);border:2px solid var(--green);border-radius:14px">
+    <p style="font-family:var(--fh);font-size:16px;font-weight:700;color:var(--green)">🎉 Ты — цифровой дизайнер! +100 XP</p>
+    <p class="bmd" style="margin-top:4px">Генерация в 2026 — не лотерея. Это осознанный процесс.</p>
+  </div>
+</div></div>
+</section>
+
+<!-- S17 ДОМАШНЕЕ ЗАДАНИЕ -->
+<section class="slide hw-slide">
+<div class="sc"><div class="inn">
+  <div class="ey a1" style="color:var(--accent)">Домашнее задание</div>
+  <h2 class="tlg a2" style="color:#fff">Создай постер для товара твоей жизни</h2>
+  <p class="blg a3" style="margin-top:14px;color:rgba(255,255,255,.8)">Постер для фильма, товара, бренда одежды, машины, еды — что угодно!</p>
+  <div class="hwc a4" style="margin-top:20px">
+    <div class="hw-card">
+      <h3>🧠 Шаг 1: Анализ</h3>
+      <p>Зайди в ChatGPT. Задай вопрос: «Ты — маркетолог. Помоги создать концепцию визуала для [ТВОЙ ТОВАР]». Получи концепцию и ТЗ.</p>
+    </div>
+    <div class="hw-card">
+      <h3>⚙️ Шаг 2: Промпт</h3>
+      <p>Собери промпт по 5 блокам. Используй конструктор из этой презы. Напиши и RU, и EN версию.</p>
+    </div>
+    <div class="hw-card">
+      <h3>🚀 Шаг 3: Тест</h3>
+      <p>Запусти в Gemini и Higgsfield одновременно. Сравни результаты. Проведи аудит — что лучше?</p>
+    </div>
+    <div class="hw-card">
+      <h3>🔁 Шаг 4: Итерации</h3>
+      <p>Сделай минимум 3 итерации. Каждый раз улучшай промпт — добавляй детали, меняй освещение, уточняй цвета.</p>
+    </div>
+  </div>
+  <div class="a5" style="margin-top:20px;padding:18px 22px;background:rgba(255,255,255,.05);border:2px dashed rgba(255,255,255,.2);border-radius:14px">
+    <p class="blg" style="color:rgba(255,255,255,.9);margin-bottom:10px">Выложи в канал с хештегом <strong style="color:var(--accent)">#AITREND_AIDesigner</strong> — лучшие работы разберу лично!</p>
+    <div style="display:flex;gap:10px;flex-wrap:wrap">
+      <button class="cpb dk" onclick="copyPrompt('analysis')">📋 Промпт для анализа</button>
+      <button class="cpb dk" onclick="copyPrompt('cola-en')">📋 Шаблон Cola EN</button>
+      <button class="cpb dk" onclick="copyPrompt('porsche-en')">📋 Шаблон Porsche EN</button>
+      <button class="cpb dk" onclick="copyPrompt('vogue-en')">📋 Vogue промпт</button>
+      <button class="cpb dk" onclick="copyPrompt('paparazzi-en')">📋 Paparazzi промпт</button>
+      <button class="cpb dk" onclick="copyPrompt('cinema-en')">📋 Кино-портрет</button>
+      <button class="cpb dk" onclick="copyPrompt('chill-en')">📋 Chill-Out постер</button>
+    </div>
+  </div>
+</div></div>
+</section>
+
+<!-- S18 ИТОГИ -->
+<section class="slide">
+<div class="sc"><div class="inns">
+  <div class="ey a1">Итоги урока</div>
+  <h2 class="tlg a2">Главные выводы цифрового дизайнера</h2>
+  <div class="a3" style="margin-top:20px;display:flex;flex-direction:column;gap:12px">
+    <div style="display:flex;gap:14px;padding:16px 18px;background:var(--white);border:2px solid rgba(46,213,115,.3);border-radius:14px">
+      <span style="font-size:22px">✅</span>
+      <div><div style="font-family:var(--fh);font-size:14px;font-weight:700;margin-bottom:4px">Работа дизайнера начинается с ChatGPT и анализа</div><p class="bmd">Не с кнопки Generate. Сначала смысл — потом пиксели.</p></div>
+    </div>
+    <div style="display:flex;gap:14px;padding:16px 18px;background:var(--white);border:2px solid rgba(104,91,199,.3);border-radius:14px">
+      <span style="font-size:22px">✅</span>
+      <div><div style="font-family:var(--fh);font-size:14px;font-weight:700;margin-bottom:4px">Каждое слово в промпте влияет на «дороговизну» визуала</div><p class="bmd">«Deep burgundy» vs «красный» — разница на тысячи долларов в итоговом результате.</p></div>
+    </div>
+    <div style="display:flex;gap:14px;padding:16px 18px;background:var(--white);border:2px solid rgba(255,165,2,.3);border-radius:14px">
+      <span style="font-size:22px">✅</span>
+      <div><div style="font-family:var(--fh);font-size:14px;font-weight:700;margin-bottom:4px">Ты — Арт-директор, ИИ — исполнитель</div><p class="bmd">Осветитель, декоратор, оператор — всё это теперь твой промпт.</p></div>
+    </div>
+    <div style="display:flex;gap:14px;padding:16px 18px;background:rgba(181,237,24,.08);border:2px solid rgba(181,237,24,.3);border-radius:14px">
+      <span style="font-size:22px">🏆</span>
+      <div><div style="font-family:var(--fh);font-size:14px;font-weight:700;margin-bottom:4px">Главный итог 2026</div><p class="bmd" style="color:var(--primary);font-weight:600">Генерация — это не лотерея. Это осознанный, последовательный процесс. Ты — создатель визуальных смыслов.</p></div>
+    </div>
+  </div>
+</div></div>
+</section>
+
+<!-- S19 ФИНАЛ -->
+<section class="slide" style="background:var(--dark)">
+<div class="sc"><div class="inns" style="text-align:center">
+  <div class="a1" style="font-size:80px;margin-bottom:18px;animation:fl 3s ease-in-out infinite;display:block">🎨</div>
+  <h2 class="tlg a2" style="color:#fff">Ты — создатель визуальных смыслов!</h2>
+  <p class="blg a3" style="margin-top:16px;max-width:520px;margin-left:auto;margin-right:auto;color:rgba(255,255,255,.75)">Ты умеешь видеть за продуктом идею и переводить смыслы в точные ТЗ для ИИ. Этот навык будет кормить долгие годы.</p>
+  <div class="a4" style="margin-top:22px;display:flex;justify-content:center;gap:10px;flex-wrap:wrap">
+    <span class="tag pr">🧠 ChatGPT-анализ</span>
+    <span class="tag ac">🎨 5 блоков промпта</span>
+    <span class="tag" style="background:rgba(255,255,255,.1);color:#fff;border-color:rgba(255,255,255,.2)">🚀 Gemini + Higgsfield</span>
+  </div>
+  <div class="a5" style="margin-top:28px">
+    <div class="logo" style="justify-content:center">
+      <div class="logo-icon"><div class="logo-a" style="color:var(--accent)">a</div><div class="logo-dot"></div></div>
+      <span class="logo-text" style="color:var(--accent)">trend</span>
+    </div>
+    <p class="bmd" style="color:rgba(255,255,255,.4);margin-top:14px">Выложи работу → #AITREND_AIDesigner 🚀</p>
+  </div>
+</div></div>
+</section>
+
+<script>
+const PROMPTS = {
+  'analysis': `Ты — ведущий маркетолог и эксперт по визуальному брендингу.\nПроанализируй новый продукт: [НАЗВАНИЕ ПРОДУКТА].\n\nОтветь на вопросы:\n1. Какую ключевую эмоцию должен вызывать визуал?\n   (Энергия или расслабление? Свежесть или премиальность?)\n2. Какие визуальные метафоры подчеркнут продукт?\n   (лёд, брызги, градиенты, частицы, свет?)\n3. Какая цветовая палитра создаст нужное настроение?\n4. Какой стиль съёмки: 3D рендер, фото, минимализм?\n\nПосле анализа — составь подробный промпт для генерации изображения.`,
+  'cola-ru': `Создай ультрареалистичный 3D коммерческий продуктовый снимок бутылки Coca-Cola Cherry.\nБутылка парит в воздухе с мельчайшими каплями конденсата на поверхности.\nОкружение: динамичные брызги, вишни, кубики льда в движении.\nФон: глубокий красно-бордовый градиент.\nОсвещение: кинематографическое студийное с яркими бликами.\nАтмосфера: роскошная, соблазнительная, премиальная.\nСтиль: коммерческая реклама уровня крупного бренда, 8K разрешение.`,
+  'cola-en': `Create an ultra-realistic 3D commercial-style product shot of a Coca-Cola Cherry bottle.\nThe bottle is suspended mid-air with intricate condensation droplets on the surface.\nSurround with dynamic elements: splashing droplets, cherries, ice cubes frozen in high-speed motion.\nBackground: rich, deep red and burgundy gradient.\nLighting: cinematic, studio-style with bright highlights and dramatic shadows.\nAtmosphere: luxurious, indulgent, premium feel.\nStyle: high-end commercial advertising render, 8K resolution.`,
+  'porsche-ru': `Дизайн высококлассного автомобильного постера: Porsche 911 GT3 RS.\nКомпозиция с несколькими вертикальными панелями.\nОсновной кадр: автомобиль на чёрном фоне.\nДополнительные панели: детали — логотип, колёса, рычаг КПП.\nСтиль: ультрареалистичный 3D рендер, мягкое кинематографическое студийное освещение.\nТипографика в стиле немецкого минимализма.\nБез людей, без города, без фона.\nЦветовая схема: антрацит, серебро, акцент красного.\nПрофессиональное глянцевое качество издания.`,
+  'porsche-en': `High-end automotive poster design: Porsche 911 GT3 RS.\nComposition with multiple vertical rectangular panels.\nMain shot: car on black background.\nDetail panels: logo, wheels, gear shift.\nStyle: ultra-realistic 3D render, soft cinematic studio lighting.\nTypography in German minimalist style.\nNo people, no city, no background elements.\nColor scheme: anthracite, silver, red accent.\nProfessional magazine-quality finish.`,
+  'restore-ru': `Пожалуйста, поработай как профессиональный реставратор. Улучши качество этой фотографии, сделай черты лица четкими, добавь естественные цвета, сохранив атмосферу того времени.`,
+  'restore-en': `Please, work as a professional restorer. Improve the quality of this photo, make the facial features clear, add natural colors, preserving the atmosphere of that time.`,
+  'animate-ru': `Оживи это изображение с помощью плавных, кинематографичных движений. Сделай анимацию мягкой и естественной. Пусть человек машет в камеру, улыбается и смеётся.`,
+  'animate-en': `Make this image come alive with cinematic motions, smooth animations. Make the person wave to the camera, smile and laugh naturally.`,
+  'vogue-ru': `Реалистичный портрет Йор Форджер из «Семья Шпиона» как высококлассной модели на обложке журнала VOGUE. Элегантный чёрный костюм ассасина, уверенный и таинственный взгляд, аккуратная причёска, кинематографическое освещение. Логотип Vogue сверху, макет модного журнала, минималистичный фон, стиль профессиональной фотографии.`,
+  'vogue-en': `Realistic portrait of Yor Forger from Spy Family as a high-fashion model on the cover of VOGUE magazine. Elegant black assassin outfit that she wears, confident and mysterious expression, sleek hairstyle, cinematic lighting. Vogue logo at the top, fashion magazine layout, minimalist background, professional photography style.`,
+  'paparazzi-ru': `Фото папарацци: знаменитость застигнута врасплох выходящей из ночного клуба в 3 ночи, дизайнерские солнечные очки слегка съехали, в руке зелёный смузи, избегает взгляда камеры. Водяной знак TMZ в углу. Заголовок: «[ИМЯ] ДИКАЯ НОЧЬ: Звезда Улицы Сезам говорит "Без комментариев"».`,
+  'paparazzi-en': `Paparazzi photo of [NAME] caught leaving a nightclub at 3am, designer sunglasses slightly askew, holding a green smoothie and avoiding eye contact with the camera. TMZ watermark in corner. Headline reads "[NAME] WILD NIGHT: Sesame Street Star Says 'No Comment'".`,
+  'cinema-ru': `Создай гиперреалистичный 8K UHD кинематографический постер-портрет женщины в крутом образе, вдохновлённом референсным изображением — похожая причёска, черты лица и телосложение при сохранении естественного реалистичного вида. Снято как на объектив 35мм, f/1.8, резкий фокус, кремовое боке, кинематографическая цветокоррекция, детальная текстура кожи как с зеркальной камеры.`,
+  'cinema-en': `Create a hyper-realistic 8K UHD cinematic poster portrait of a woman in cool outfit inspired by the reference image, with a similar hairstyle, facial structure, and body build while maintaining a natural realistic look. Shot as if captured on a 35mm lens, f/1.8, with sharp focus, creamy bokeh, cinematic color grading, and detailed DSLR skin texture.`,
+  'chill-ru': `Создай современный графический постер с названием «Chill-out». Парень в красном худи, чёрных спортивных штанах с отворотами, красно-белых кроссовках Air Jordan, тёмных солнечных очках и серебряных кольцах. Сидит расслабленно, облокотившись на крупную типографику, одна нога согнута, другая слегка вытянута к зрителю. Фон: матовый чёрный. Крупный белый шрифт «chill» и «out» со структурой скамейки, «chill» с подчёркиванием. Оранжевые круги, квадраты, тонкие белые линии сетки. Фразы: «Жизнь намного проще, когда ты просто расслабляешься» и «Меньше стресса, больше чилла».`,
+  'chill-en': `Design a modern graphic poster titled "Chill-out." The man wears a red hoodie, black cuffed joggers, red and white Air Jordan high-top sneakers, dark sunglasses, and silver rings. He sits in a relaxed reclined pose leaning against oversized typography, one leg bent and the other slightly extended toward the viewer. His body angles right while his face turns toward the camera in a confident three-quarter view. Background is matte textured black. Large bold white sans-serif text "chill" and "out" forms a bench-like structure, with "chill" underlined. Add orange circles, squares, thin white grid lines, and phrases: "Life is so much easier when you just chill-out" and "Less stress, more chill."`
+};
+
+// CORE
+const slides=document.querySelectorAll('.slide');
+const T=slides.length;
+document.getElementById('tc').textContent=T;
+let xp=0,cur=0;
+const dc=document.getElementById('dots');
+slides.forEach((_,i)=>{const d=document.createElement('div');d.className='dt';d.onclick=()=>go(i);dc.appendChild(d);});
+const dots=document.querySelectorAll('.dt');
+const obs=new IntersectionObserver(es=>{es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('v');cur=Array.from(slides).indexOf(e.target);ui();}});},{threshold:0.4});
+slides.forEach(s=>obs.observe(s));
+function ui(){document.getElementById('cc').textContent=cur+1;document.getElementById('tfill').style.width=((cur+1)/T*100)+'%';dots.forEach((d,i)=>d.classList.toggle('on',i===cur));}
+function go(i){slides[i].scrollIntoView({behavior:'smooth'});}
+let kht;
+document.addEventListener('keydown',e=>{
+  const a=document.activeElement;
+  if(a.tagName==='TEXTAREA'||a.tagName==='INPUT'){if(e.key===' ')e.stopPropagation();return;}
+  if(e.key==='ArrowDown'||e.key===' '){e.preventDefault();if(cur<T-1)go(cur+1);}
+  else if(e.key==='ArrowUp'){e.preventDefault();if(cur>0)go(cur-1);}
+  document.getElementById('kh').classList.remove('h');
+  clearTimeout(kht);kht=setTimeout(()=>document.getElementById('kh').classList.add('h'),2000);
+});
+setTimeout(()=>document.getElementById('kh').classList.add('h'),4000);
+
+function aXP(n){
+  xp+=n;document.getElementById('xpv').textContent=xp;
+  document.getElementById('xp').classList.add('b');
+  setTimeout(()=>document.getElementById('xp').classList.remove('b'),400);
+  const t=document.getElementById('xptoast');
+  t.textContent='+'+n+' XP!';t.classList.add('show');
+  setTimeout(()=>t.classList.remove('show'),1800);
+}
+function copyPrompt(key){
+  const txt=PROMPTS[key]||'';
+  if(!txt){alert('Промпт не найден!');return;}
+  const btn=event.target,orig=btn.innerHTML;
+  const done=()=>{btn.classList.add('ok');btn.innerHTML='✅ Скопировано!';aXP(25);setTimeout(()=>{btn.classList.remove('ok');btn.innerHTML=orig;},2200);};
+  if(navigator.clipboard&&window.isSecureContext)navigator.clipboard.writeText(txt).then(done).catch(()=>fb(txt,done));
+  else fb(txt,done);
+}
+function fb(t,cb){const ta=document.createElement('textarea');ta.value=t;ta.style.cssText='position:fixed;opacity:0';document.body.appendChild(ta);ta.focus();ta.select();try{document.execCommand('copy');}catch(e){}document.body.removeChild(ta);if(cb)cb();}
+function copyArea(id){
+  const v=(document.getElementById(id)||{}).value||'';
+  if(!v.trim()){alert('Сначала напиши промпт!');return;}
+  const btn=event.target,orig=btn.innerHTML;
+  const done=()=>{btn.classList.add('ok');btn.innerHTML='✅ Скопировано!';aXP(25);setTimeout(()=>{btn.classList.remove('ok');btn.innerHTML=orig;},2200);};
+  if(navigator.clipboard&&window.isSecureContext)navigator.clipboard.writeText(v).then(done).catch(()=>fb(v,done));
+  else fb(v,done);
+}
+
+// CONSTRUCTOR
+let builtBlocks=[];
+function addBlock(el,txt){
+  el.classList.toggle('selected');
+  if(el.classList.contains('selected')) builtBlocks.push(txt);
+  else builtBlocks=builtBlocks.filter(s=>s!==txt);
+  const box=document.getElementById('prompt-result');
+  if(!box)return;
+  if(builtBlocks.length===0){box.textContent='Выбирай блоки выше — промпт строится здесь...';box.classList.remove('filled');}
+  else{box.textContent=builtBlocks.join(', ')+', 8K resolution, professional advertising quality.';box.classList.add('filled');}
+}
+function copyBuiltPrompt(){
+  if(builtBlocks.length===0){alert('Выбери хотя бы один блок!');return;}
+  const txt=builtBlocks.join(', ')+', 8K resolution, professional advertising quality.';
+  fb(txt,()=>{aXP(50);alert('✅ Промпт скопирован!');});
+}
+function resetBuilder(){
+  builtBlocks=[];
+  document.querySelectorAll('.cblk.selected').forEach(b=>b.classList.remove('selected'));
+  const box=document.getElementById('prompt-result');
+  if(box){box.textContent='Выбирай блоки выше — промпт строится здесь...';box.classList.remove('filled');}
+}
+
+// PRODUCT SELECTOR
+const PRODUCTS={
+  'напиток':'Создай ультрареалистичный 3D коммерческий снимок холодного напитка.\nЗапотевшая бутылка с каплями конденсата парит в воздухе.\nОкружение: брызги жидкости, кубики льда, листик мяты, дольки лимона.\nФон: глубокий синий градиент, холодная атмосфера.\nОсвещение: студийное кинематографическое.\n8K разрешение, реклама уровня крупного бренда.',
+  'автомобиль':'Дизайн высококлассного автомобильного постера.\nАвтомобиль на угольно-чёрном фоне, множество ракурсов: общий план + детали.\nМягкое студийное кинематографическое освещение.\nМинималистичная типографика.\nБез людей, без города, без лишнего фона.\n8K, глянцевое качество журнала.',
+  'смартфон':'Создай ультрареалистичный рекламный постер смартфона.\nТелефон парит в воздухе на угольно-тёмном фоне.\nЭкран светится, показывает яркий интерфейс.\nГеометрические световые блики, частицы вокруг устройства.\nЧёткая прорисовка текстуры корпуса и стекла.\nСтудийный свет, 8K, высококлассная реклама.',
+  'одежда':'Создай fashion-постер для бренда одежды.\nМинималистичная композиция: предмет одежды в центре, чистый фон.\nФактура ткани передана гиперреалистично.\nМягкое студийное освещение подчёркивает форму.\nЭлегантная типографика.\nСтиль: премиальный глянцевый журнал.',
+  'парфюм':'Создай рекламный постер парфюма.\nФлакон парит в воздухе, окружён лепестками цветов и туманом.\nСвет играет на гранях стекла, создавая блики.\nФон: мягкий золотисто-бежевый градиент.\nАтмосфера: роскошная, чувственная, таинственная.\n8K, стиль высококлассного парфюмерного бренда.',
+  'еда':'Создай рекламный постер еды в стиле food-photography.\nОсновное блюдо в центре, парящие ингредиенты вокруг.\nКапли соуса застыли в движении, паром от горячего блюда.\nЯркие насыщенные цвета, аппетитная текстура.\nСтудийный свет подчёркивает фактуру еды.\n8K, коммерческое качество рекламы ресторана.'
+};
+function setProduct(el,type){
+  document.querySelectorAll('.cblk').forEach(b=>b.classList.remove('selected'));
+  el.classList.add('selected');
+  const ta=document.getElementById('p3');
+  if(ta)ta.value=PRODUCTS[type]||'';
+}
+
+// PRACTICE
+const pDone={};
+function checkP(n){
+  const v=(document.getElementById('p'+n)||{}).value||'';
+  const fb2=document.getElementById('p'+n+'f');
+  if(!fb2)return;
+  if(v.trim().length<15){
+    fb2.style.display='block';
+    fb2.innerHTML='<div style="background:rgba(255,71,87,.08);border:2px solid var(--red);border-radius:12px;padding:12px"><p class="bmd tr">✍️ Напиши промпт! Хотя бы 3-4 блока.</p></div>';
+    return;
+  }
+  if(!pDone[n]){pDone[n]=true;aXP(150);}
+  fb2.style.display='block';
+  fb2.innerHTML='<div style="background:rgba(46,213,115,.08);border:2px solid var(--green);border-radius:12px;padding:12px"><p class="blg tg"><strong>✅ Отлично!</strong> Скопируй промпт и запусти в Gemini и Higgsfield — сравни результаты!</p></div>';
+}
+
+// QUIZ
+const QQ=[
+  {q:'С чего начинает профессиональный дизайнер перед созданием постера?',o:['Сразу открывает генератор','С маркетингового анализа через ChatGPT — создаёт концепцию и ТЗ','С поиска красивых картинок','С выбора цветов'],a:1,e:'Профессиональный дизайн начинается со смысла. ChatGPT анализирует тысячи успешных кампаний и выдаёт концепцию. Только потом — генератор.'},
+  {q:'Зачем в промпте для напитка писать "condensation droplets" (капли конденсата)?',o:['Просто украшение','Это триггер свежести — без капель зритель не почувствует что напиток холодный','Это обязательное требование ИИ','Чтобы получить больше деталей'],a:1,e:'Капли конденсата на холодном напитке — это психологический триггер. Мозг автоматически считывает «холодное и свежее». Без них визуал теряет ощущение температуры.'},
+  {q:'Что делает негативный блок в промпте ("No people, no city")?',o:['Запрещает ИИ работать','Убирает лишние элементы — сохраняет фокус на главном объекте','Меняет стиль на чёрно-белый','Экономит кредиты'],a:1,e:'Негативный блок — это «сито». В премиальной рекламе минимализм. Убирая всё лишнее, вы говорите ИИ сфокусироваться на том что важно — на автомобиле, продукте.'},
+  {q:'Почему в промпте для Cola Cherry используется "deep red and burgundy" а не просто "red"?',o:['Просто красивее звучит','Burgundy — оттенок вишнёвой косточки и дорогого вина. Это психологически создаёт ощущение премиальности','Красный цвет не работает в ИИ','Это требование бренда'],a:1,e:'Психология цвета в маркетинге: конкретные оттенки вызывают разные эмоции. Burgundy шепчет «премиально и вкусно», обычный красный — просто «стоп». Каждое слово влияет на итог.'},
+  {q:'Что такое "High-end automotive poster design" в начале промпта?',o:['Название файла','Фраза которая меняет алгоритм поиска ИИ — он ищет референсы в базе глянцевых журналов','Тип экспорта файла','Размер изображения'],a:1,e:'Стилистическая команда в начале промпта — это как настройка контекста. ИИ начинает работать в режиме «дорогого журнала», а не «обычной генерации».'},
+  {q:'Зачем запускать один промпт сразу в Gemini И Higgsfield?',o:['Чтобы потратить больше кредитов','Каждый ИИ имеет сильные стороны — сравниваешь и выбираешь лучшее из обоих','Это обязательное правило','Для резервного копирования'],a:1,e:'Профессиональный подход: разные ИИ сильны в разных аспектах. Higgsfield — текстуры и физика жидкостей. Gemini — сложные описательные промпты и текст. Сравни и возьми лучшее из обоих.'},
+  {q:'Какова главная мысль про генерацию изображений в 2026 году?',o:['Это лотерея — всегда случайный результат','Это осознанный последовательный процесс: анализ → концепция → промпт → итерации','Достаточно одного слова в промпте','Лучше нанять дизайнера'],a:1,e:'Генерация — не лотерея. Это управляемый процесс. Кто умеет видеть за продуктом идею и переводить её в точный промпт — обладает навыком, который кормит долгие годы.'},
+];
+let qi=0,qs=0,qa=false;
+function renderQ(){
+  const c=document.getElementById('quiz-container');
+  if(qi>=QQ.length){
+    const pct=Math.round(qs/QQ.length*100);
+    let emoji='💪',msg='Хороший старт!';
+    if(pct===100){emoji='🏆';msg='Идеально! Ты — арт-директор!';}
+    else if(pct>=75){emoji='🎨';msg='Отлично! Профессиональный подход освоен.';}
+    c.innerHTML=`<div style="text-align:center;padding:28px 0"><div style="font-size:68px;margin-bottom:14px">${emoji}</div><div style="font-family:var(--fh);font-size:44px;font-weight:900;color:var(--primary);margin-bottom:10px">${qs} / ${QQ.length}</div><p class="blg" style="margin-bottom:6px">${msg}</p><p class="bmd">${pct}%</p><button class="pill pr sm" style="margin-top:18px" onclick="rQ()">🔄 Ещё раз</button></div>`;
+    document.getElementById('qprogb').style.width='100%';
+    if(pct>=75)aXP(200);else aXP(50);
+    return;
+  }
+  const q=QQ[qi];
+  document.getElementById('qprogb').style.width=(qi/QQ.length*100)+'%';
+  c.innerHTML=`<div class="qnum">Вопрос ${qi+1} из ${QQ.length}</div><div class="quiz-q">${q.q}</div>${q.o.map((o,i)=>`<button class="qo" onclick="aQ(${i})">${o}</button>`).join('')}<div id="qexp"></div><div id="qnxt" style="margin-top:14px;display:none;text-align:right"><button class="pill pr sm" onclick="nQ()">Дальше →</button></div>`;
+  qa=false;
+}
+function aQ(i){
+  if(qa)return;qa=true;
+  const q=QQ[qi];
+  document.querySelectorAll('.qo').forEach((o,idx)=>{o.style.pointerEvents='none';if(idx===q.a)o.classList.add('correct');else if(idx===i)o.classList.add('wrong');});
+  if(i===q.a){qs++;aXP(50);}
+  document.getElementById('qexp').innerHTML=`<div class="quiz-exp"><strong>${i===q.a?'✅ Правильно!':'❌ Неправильно.'}</strong> ${q.e}</div>`;
+  document.getElementById('qnxt').style.display='block';
+}
+function nQ(){qi++;renderQ();}
+function rQ(){qi=0;qs=0;renderQ();}
+renderQ();
+
+// SORT GAME
+const cards=[
+  {t:'Ultra-realistic 3D commercial product shot',g:true},
+  {t:'Suspended mid-air with condensation droplets',g:true},
+  {t:'Rich deep burgundy and crimson gradient',g:true},
+  {t:'Cinematic studio lighting with bright highlights',g:true},
+  {t:'Frozen high-speed motion splashing elements',g:true},
+  {t:'"Cool bottle, nice colors, 8k"',g:false},
+  {t:'"Make it red and pretty"',g:false},
+  {t:'"Add some stuff around the bottle"',g:false},
+  {t:'"Good lighting please"',g:false},
+  {t:'"High quality photo of product"',g:false},
+];
+let ac2=null,pl={};
+function renderCards(){
+  document.getElementById('game-cards').innerHTML=cards.map((c,i)=>`<div class="game-card" id="gc-${i}" onclick="selC(${i})">${c.t}</div>`).join('');
+  document.getElementById('zone-good-items').innerHTML='';
+  document.getElementById('zone-bad-items').innerHTML='';
+}
+function selC(i){
+  if(pl.hasOwnProperty(i))return;
+  document.querySelectorAll('.game-card').forEach(e=>e.classList.remove('active'));
+  const el=document.getElementById('gc-'+i);
+  if(el)el.classList.add('active');
+  ac2=i;
+  document.getElementById('zone-good').classList.add('highlight');
+  document.getElementById('zone-bad').classList.add('highlight');
+}
+function placeCard(isG){
+  if(ac2===null)return;
+  pl[ac2]=isG;
+  const el=document.getElementById('gc-'+ac2);
+  if(el){el.classList.remove('active');el.style.display='none';}
+  const zi=document.getElementById(isG?'zone-good-items':'zone-bad-items');
+  const item=document.createElement('div');
+  item.className='zone-item';item.textContent=cards[ac2].t;item.dataset.idx=ac2;
+  zi.appendChild(item);
+  document.getElementById('zone-good').classList.remove('highlight');
+  document.getElementById('zone-bad').classList.remove('highlight');
+  ac2=null;
+  if(Object.keys(pl).length===cards.length)document.getElementById('check-game').style.display='inline-flex';
+}
+function checkGame(){
+  let c=0;
+  cards.forEach((card,i)=>{
+    const ok=pl[i]===card.g;if(ok)c++;
+    ['zone-good-items','zone-bad-items'].forEach(zid=>{
+      document.getElementById(zid).querySelectorAll('.zone-item').forEach(item=>{
+        if(parseInt(item.dataset.idx)===i){
+          item.style.background=ok?'rgba(46,213,115,.15)':'rgba(255,71,87,.15)';
+          item.style.borderColor=ok?'var(--green)':'var(--red)';
+          item.style.color=ok?'var(--green)':'var(--red)';
+        }
+      });
+    });
+  });
+  const res=document.getElementById('game-result');
+  if(c===cards.length){res.innerHTML='<span class="tg">🎉 Идеально! Ты видишь разницу! +50 XP</span>';aXP(50);}
+  else res.innerHTML=`<span class="to">Правильно: ${c} из ${cards.length}. Попробуй ещё!</span>`;
+  document.getElementById('check-game').style.display='none';
+  document.getElementById('reset-game').style.display='inline-flex';
+}
+function resetGame(){pl={};ac2=null;document.getElementById('game-result').innerHTML='';document.getElementById('reset-game').style.display='none';document.getElementById('check-game').style.display='none';renderCards();}
+renderCards();
+
+// CHECKLIST
+let clDone=false;
+function toggle(el){
+  el.classList.toggle('on');
+  el.querySelector('.cb').textContent=el.classList.contains('on')?'✓':'';
+  const total=document.querySelectorAll('.chk').length,done=document.querySelectorAll('.chk.on').length;
+  if(done===total&&!clDone){clDone=true;document.getElementById('checklist-done').style.display='block';aXP(100);}
+  else if(done<total)document.getElementById('checklist-done').style.display='none';
+}
+
+// PHOTO PLACEHOLDER PREVIEW
+function showPreview(input) {
+  if (!input.files || !input.files[0]) return;
+  const reader = new FileReader();
+  reader.onload = function(e) {
+    const placeholder = input.closest('.photo-placeholder');
+    placeholder.innerHTML = `<div style="display:flex;flex-direction:column;align-items:center;gap:10px;padding:12px"><img src="${e.target.result}" style="max-width:100%;max-height:260px;border-radius:10px;object-fit:contain;display:block"><button onclick="clearPreview(this)" style="padding:6px 14px;border-radius:8px;border:1.5px solid var(--red);background:rgba(255,71,87,.08);color:var(--red);font-size:12px;font-weight:600;cursor:pointer">🗑️ Удалить фото</button></div>`;
+  };
+  reader.readAsDataURL(input.files[0]);
+}
+function clearPreview(btn) {
+  const placeholder = btn.closest('.photo-placeholder');
+  placeholder.innerHTML = `<span style="font-size:28px">🖼️</span><span>Нажми чтобы добавить фото результата</span><input type="file" accept="image/*" style="display:none" onchange="showPreview(this)">`;
+}
+</script>
+</body>
+</html>
